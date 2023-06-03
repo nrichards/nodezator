@@ -9,6 +9,10 @@ from ...our3rdlibs.behaviour import indicate_unsaved
 
 from ..socket.output import OutputSocket
 
+from pygame.mouse import (
+    get_pos as get_mouse_pos,
+)
+
 
 class UserActions:
     """Behaviours related to user actions."""
@@ -122,6 +126,11 @@ class UserActions:
         ### change window manager state to the loaded
         ### file state
         APP_REFS.window_manager.set_state("loaded_file")
+
+        print("NICK: cancel_defining_segment - add mouse up position here, don't delete socket_a")
+        mouse_pos = get_mouse_pos()
+        APP_REFS.ea.popup_spawn_pos = mouse_pos
+        (APP_REFS.window_manager.canvas_popup_menu.focus_if_within_boundaries(mouse_pos))
 
         ### restart the loop
         raise ContinueLoopException
